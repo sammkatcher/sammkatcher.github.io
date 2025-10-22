@@ -21,3 +21,9 @@ Publications
 Experience - maybe 
 Contact
 <Links> 
+
+
+# Other
+Add a blurb about PANOPTIC and link to the PANOPTIC webpage: https://ptmworkshop.gitlab.io/#/panoptic
+
+For the Publications, I want to have the PDFs available and also the links to the actual publications on the native publications websites.
