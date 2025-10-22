@@ -27,3 +27,5 @@ Contact
 Add a blurb about PANOPTIC and link to the PANOPTIC webpage: https://ptmworkshop.gitlab.io/#/panoptic
 
 For the Publications, I want to have the PDFs available and also the links to the actual publications on the native publications websites.
+
+Can I do a "news" section where I can put blog post style links to various talks etc things I've done? can those be back-dated?
