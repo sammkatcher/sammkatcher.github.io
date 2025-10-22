@@ -1,0 +1,73 @@
+<div class="main">
+  <div class="main-image">
+    <img class="main-image-img"
+      style="width:100%;object-fit: contain;" 
+      onload="this.classList.add('loaded')" 
+      src="/assets/avatar.jpg"/>
+  </div>
+  <div class="main-bio" style="text-align:center">
+    Thanks for visiting my website! It's currently under development ✨🛠✨  but come back soon!
+  </div>
+</div>
+<style>
+.main{
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 5%);
+  overflow: none;
+  padding: 2% 0% 0% 5%;
+}
+.main-image {
+  display: flex;
+  flex-direction: row;
+  padding: 0 5% 0 0;
+  align-self: start;
+  max-width : 500px;
+}
+.main-image-img {
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.main-image-img.loaded {
+  opacity: 1;
+}
+.main-bio{
+  padding: 0 5% 0 0;
+  top: 0;
+  padding-top:0;
+  margin-top: -5px;
+  align-self: center;
+  line-height: 28.5px;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Poppins";
+  color: hsla(0,0%,0%,1);
+  /* letter-spacing: 1.001px; */
+  transition: width 1s ease-in-out;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .main {
+    display: grid;
+    justify-content: center;
+    grid-gap: 40px;
+  }
+  .main-bio{
+    padding:0;
+  }
+  .main-image{
+    display: grid;
+    justify-self: center;
+    padding:0;
+  }
+  .main-image-img{
+    justify-self: center;
+  }
+}
+.bottom-space{
+  display: block;
+  height: 300px;
+  width: 100%;
+}
+</style>

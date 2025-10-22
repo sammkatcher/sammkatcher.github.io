@@ -1,0 +1,23 @@
+{
+  "name": "sammkatcher.github.io",
+  "version": "1.0.0",
+  "description": "Samm Katcher's Website",
+  "homepage": "https://github.com/sammkatcher/sammkatcher.github.io/#readme",
+  "bugs": {
+    "url": "https://github.com/sammkatcher/sammkatcher.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammkatcher/sammkatcher.github.io.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "dev.js",
+  "scripts": {
+    "dev": "node dev.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

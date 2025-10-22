@@ -1,0 +1,32 @@
+<!-- <div id="BA5402B1" class="BA5402B1-footer" onclick="window.open('https://barakbinyamin.github.io')">Portfolio made with ❤️ by Barak Binyamin</div> -->
+<script>
+  setTimeout(()=>{
+    document.getElementById("BA5402B1").classList.add("BA5402B1-active")
+    console.log(document.getElementById("footer").classList)
+  },3000)
+</script>
+<style>
+.BA5402B1-footer{
+  opacity: 0;
+  padding: 40px;
+  padding-top: 0px;
+  text-align: center;
+  transition: color .5s ease-in-out;
+}
+.BA5402B1-active{
+  opacity: 1;
+  animation: BA5402B1-fadeIn 2s ease-in forwards; 
+}
+@keyframes BA5402B1-fadeIn {
+  from {
+    opacity: 0; /* Start fully transparent */
+  }
+  to {
+    opacity: .2; /* End fully opaque */
+  }
+}
+.BA5402B1-footer:hover{
+  cursor: pointer;
+  color: blue;
+}
+</style>

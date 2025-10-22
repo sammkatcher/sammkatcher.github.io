@@ -1,0 +1,272 @@
+  <div style="text-align:center">Coming soon!</div>
+
+<div class="D4AD6D16-main">
+  <!-- <form id="D4AD6D16-my-form" action="https://formspree.io/f/" method="POST" class="D4AD6D16-contact-form">
+    <h2>Contact Me</h2>
+
+    <label for="email">Email <span>*</span></label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+    <label for="phone">Phone (optional)</label>
+    <input type="tel" id="phone" name="phone" placeholder="1234567890" pattern="[0-9]{10,15}" />
+
+    <label for="message">Message <span>*</span></label>
+    <textarea id="message" name="message" rows="4" placeholder="Type your message..." required></textarea>
+
+    <button type="submit" id="D4AD6D16-my-form-button">Send</button>
+    <p id="D4AD6D16-my-form-status"></p>
+  </form> -->
+
+  <!-- <aside class="D4AD6D16-contact-info">
+    <h3>Find me</h3>
+    <p><strong>IMDB:</strong> <a href="https://www.imdb.com/name/nm4789826/?ref_=fn_al_nm_1" target="_blank">@luciewang</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/luciewang/" target="_blank">@luciewang</a></p>
+    <p><strong>WorldFixer:</strong> <a href="https://worldfixer.com/app/profile/cf6c2f61-1993-4e6d-b522-0db799438bed" target="_blank">@luciew</a></p>
+    <p><strong>Creativepool:</strong> <a href="https://creativepool.com/luciew" target="_blank">@luciew</a></p>
+  </aside> -->
+</div>
+
+<script>
+  const form = document.getElementById("D4AD6D16-my-form");
+  const status = document.getElementById("D4AD6D16-my-form-status");
+
+  function checkLimit() {
+    const today = new Date().toISOString().split("T")[0];
+    const record = JSON.parse(localStorage.getItem("formSubmissions")) || { date: today, count: 0 };
+    if (record.date !== today) {
+      localStorage.setItem("formSubmissions", JSON.stringify({ date: today, count: 0 }));
+      return 0;
+    }
+    return record.count;
+  }
+
+  function incrementLimit() {
+    const today = new Date().toISOString().split("T")[0];
+    let record = JSON.parse(localStorage.getItem("formSubmissions")) || { date: today, count: 0 };
+    record = { date: today, count: record.count + 1 };
+    localStorage.setItem("formSubmissions", JSON.stringify(record));
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (checkLimit() >= 3) {
+      status.textContent = "You’ve reached the 3 submissions per day limit.";
+      status.style.color = "red";
+      return;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = "Please enter a valid email.";
+      status.style.color = "red";
+      return;
+    }
+
+    const phone = document.getElementById("phone").value.trim();
+    if (phone && !/^\d{10,15}$/.test(phone)) {
+      status.textContent = "Phone must be 10–15 digits.";
+      status.style.color = "red";
+      return;
+    }
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: "application/json" }
+      });
+
+      if (response.ok) {
+        status.textContent = "Thanks! Your message was sent.";
+        status.style.color = "green";
+        form.reset();
+        incrementLimit();
+      } else {
+        const result = await response.json();
+        if (result.errors) {
+          status.textContent = result.errors.map(err => err.message).join(", ");
+        } else {
+          status.textContent = "Oops! Something went wrong.";
+        }
+        status.style.color = "red";
+      }
+    } catch (error) {
+      status.textContent = "Network error. Please try again.";
+      status.style.color = "red";
+    }
+  }
+
+  form.addEventListener("submit", handleSubmit);
+</script>
+
+
+<style>
+.D4AD6D16-main{
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 12px);
+  overflow: none;
+  /* padding: 2% 0% 0% 5%; */
+  padding-left: 2px;
+  margin-top: -10px;
+  align-items: center;
+   align-items: center;
+  justify-content: center;
+  /* border: 2px dotted rgb(96 139 168); */
+}
+.D4AD6D16-main-image {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0% 0 0;
+  align-self: start;
+  max-width : 500px;
+  flex: 0%;
+}
+.D4AD6D16-main-image-img {
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.D4AD6D16-main-image-img.loaded {
+  opacity: 1;
+}
+.D4AD6D16-main-bio{
+  padding: 0 0% 0 0;
+  top: 0;
+  padding-top:0;
+  margin-top: -5px;
+  align-self: center;
+  line-height: 28.5px;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Poppins";
+  color: hsla(0,0%,0%,1);
+  /* letter-spacing: 1.001px; */
+  transition: width 1s ease-in-out;
+  flex: 100%;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .contact-container{
+    /* flex: 100%; */
+    min-width: 300px;
+  }
+}
+.bottom-space{
+  display: block;
+  height: 300px;
+  width: 100%;
+}
+
+/* contact me form */
+  .contact-container {
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #000;
+    display: flex;
+    justify-self: center;
+    gap: 40px;
+    padding-left: 20px;
+  }
+
+  .D4AD6D16-contact-form {
+    flex: 1;
+    padding: 0px 20px 20px 20px;
+    /* border: 1px solid black; */
+    border-radius: 16px;
+    max-width: 500px;
+    align-self: center;
+  }
+
+  .D4AD6D16-contact-form h2 {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 50;
+  }
+
+  .D4AD6D16-contact-form label {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .D4AD6D16-contact-form input,
+  .D4AD6D16-contact-form textarea {
+    width: 100%;
+    padding: 8px 4px;
+    margin-top: 6px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    background: transparent;
+  }
+
+  .D4AD6D16-contact-form input:focus,
+  .D4AD6D16-contact-form textarea:focus {
+    outline: none;
+    border-color: #000;
+  }
+
+  .D4AD6D16-contact-form button {
+    width: 100%;
+    margin-top: 30px;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+
+  .D4AD6D16-contact-form button:hover {
+    background: #333;
+  }
+
+  .D4AD6D16-contact-form p {
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .D4AD6D16-contact-form label span {
+    color: red;
+  }
+
+  .D4AD6D16-contact-info {
+    flex: 0.5;
+    align-self: flex-start;
+    border-left: 1px solid black;
+    padding-left: 20px;
+    margin-left: 10px;
+    max-width: max-content;
+  }
+
+  .D4AD6D16-contact-info h3 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 50;
+  }
+
+  .D4AD6D16-contact-info p {
+    margin: 6px 0;
+    font-size: 14px;
+  }
+
+  .D4AD6D16-contact-info a {
+    color: black;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+</style>
